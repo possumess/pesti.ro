@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+<title>pesti.ro</title>
+<style>
+h1 { font-size:4vw }
+h3 { font-size:2vh } 
+img { margin-top: 2vh; width: 15vw; height: auto; }
+button { height:30vh; width:17vw; transition-duration: 0.4s; background-color: white; border: #9badba; cursor: pointer;}
+button:hover { background-color: #9DB9CC }
+
+.btn {
+  background-color: #CEE6F2;
+  margin-left: 2vw;
+  cursor: pointer;
+}
+
+.filterDiv {
+  float: left;
+  color: #ffffff;
+  width: 15vw;
+  line-height: 100px;
+  text-align: center;
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.container {
+  margin-top: 10vh;
+  overflow: hidden;
+}
+
+.btn.active {
+  background-color: #9095f5;
+  color: white;
+}
+
+#pesti { background-color: #67c7f0; height: 27vh; margin-left:1vw; margin-right:1vw }
+
+@media screen and (max-width: 800px) {
+  pesti { background-color: #67c7f0; margin-left:1vw; margin-right:1vw; height: 14vh; }
+}
+
+</style>
+</head>
+ 
+<body>
+<div id="pesti">
+<h1 style="margin-left: 2vw; margin-top: 2vh">pesti.ro</h1>
+</div>
+
+<div style="background-color: height: 13vh; margin-top: 2vh; display:flex; flex-direction:row" id="myBtnContainer">
+<div>
+  <button class="btn active" onclick="filterSelection('tot')" style="height: 13vh;"><h3>Tot</h3></button>
+  <button class="btn" onclick="filterSelection('alb')" style="height: 13vh;"><h3>Albastru</h3></button>
+  <button class="btn" onclick="filterSelection('ro')" style="height: 13vh;"><h3>Rosu</h3></button>
+  <button class="btn" onclick="filterSelection('port')" style="height: 13vh;"><h3>Portocaliu</h3></button>
+</div>
+
+</div>
+
+<div style="display: flex; flex-direction: row; margin-top: 1vh" class="container">
+
+<a href="https://www.wikipedia.org/">
+<div class="filterDiv port; filterDiv tot"><button>
+<img src="https://magazinacvaristica.ro/wp-content/uploads/2021/10/pesti-exotici-de-acvariu-1.jpg" alt="peste">
+<h3>Peste portocaliu 49.99 RON</h3>
+</button></div>
+</a>
+<br>
+
+<div class="filterDiv ro; filterDiv alb; filterDiv tot" style=" margin-left:2vw ">
+<button>
+<img src="https://articles.hepper.com/wp-content/uploads/2022/09/red-tailed-shark_Diego-Grandi_Shutterstock.jpg" alt="peste" style="height: 20vh; width: auto">
+<h3>Rechin cu coada roscata 79.99 RON</h3>
+</button>
+</div>
+
+<br>
+
+<div class="filterDiv alb; filterDiv tot" style=" margin-left:2vw ">
+<button>
+<img src="https://images.stockcake.com/public/1/5/3/153965a4-70dc-4ec4-83d5-4e9636f30f58_large/vibrant-blue-fish-stockcake.jpg" alt="peste">
+<h3>Chirurg regal 249.99 RON</h3>
+</button></div>
+
+<br>
+
+<div class="filterDiv port; filterDiv tot" style=" margin-left:2vw ">
+<button>
+<img src="https://c.files.bbci.co.uk/73e5/live/c5cad050-3559-11f0-bf15-094eef773db0.jpg" alt="peste">
+<h3>Clownfish 99.99</h3>
+</button>
+</div>
+
+<br>
+ 
+<div class="filterDiv alb; filterDiv tot" style=" margin-left:2vw ">
+<button>
+<img src="https://www.thesprucepets.com/thmb/zphYHnOpcNQIlQV_l1-w9m-9XX0=/3000x0/filters:no_upscale():strip_icc()/blue-green-chromis-fish-species-profile-4797865-hero-c69f6ebebb0449b6b6964bb46561df7b.jpg" alt="peste"
+style="height:20vh; width:auto">
+<h3>Chromis verde 199.99</h3>
+</button></div>
+
+<br>
+
+<div class="filterDiv ro; filterDiv tot" style=" margin-left:2vw ">
+<button>
+<img src="https://pet-health-content-media.chewy.com/wp-content/uploads/2025/04/16142251/202503bec-202410tropical-fish-1024x615.jpg" alt="peste">
+<h3>Pește luptător siamez 69.99 RON</h3>
+</button>
+</div>
+
+</div>
+</div>
+<script>
+filterSelection("all")
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("filterDiv");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+}
+
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
+
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);     
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+var btnContainer = document.getElementById("myBtnContainer");
+var btns = btnContainer.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function(){
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+</script>
+</body>
+</html>
